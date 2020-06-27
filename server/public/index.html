@@ -11,14 +11,20 @@
 <body>
   <h1>Server Side Calculator</h1>
 
-  <input type="number" id="num1-in" />
-  <button id="plus-btn">+</button>
-  <button id="minus-btn">-</button>
-  <button id="multiply-btn">*</button>
-  <button id="divide-btn">/</button>
-  <input type="number" id="num2-in" />
-  <button id="equals-btn">=</button>
-  <button id="clear-btn">C</button>
-  
+<!-- maybe add bootstrap? -->
+  <form id="calculator">
+    <input id="num1-in" />
+      <button class="modeSelect" id="plus-btn">+</button>
+      <button class="modeSelect" id="minus-btn">-</button>
+      <button class="modeSelect" id="multiply-btn">*</button>
+      <button class="modeSelect" id="divide-btn">/</button>
+    <input id="num2-in" />
+      <button id="equals-btn">=</button>
+      <button id="clear-btn">C</button>
+  </form>
+  <div id="result">0</div>
+
+  <div id="entryHistory"></div>
+
 </body>
 </html>
