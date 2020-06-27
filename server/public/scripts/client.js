@@ -2,8 +2,8 @@ console.log('js');
 
 let mode = '';
 let modeSymbol = '';
-let num1 = 0;
-let num2 = 0;
+let prevNum = 0;
+let currentNum = 0;
 
 $(document).ready(onReady);
 
@@ -20,13 +20,13 @@ function onReady() {
 function calc(event) {
   event.preventDefault();
 
-  num1 = parseFloat($('#num1-in').val());
-  num2 = parseFloat($('#num2-in').val());
+  prevNum = parseFloat($('#prevNum-in').val());
+  currentNum = parseFloat($('#currentNum-in').val());
   
   let parcel = {
     mode,
-    num1,
-    num2
+    prevNum,
+    currentNum
   }
 
   console.log(parcel);
@@ -48,8 +48,8 @@ function clearCalc(event) {
   event.preventDefault();
 
   mode = '';
-  $('#num1-in').val('');
-  $('#num2-in').val('');
+  $('#prevNum-in').val('');
+  $('#currentNum-in').val('');
 }
 
 function selectMode(event) {
@@ -74,5 +74,5 @@ function updateResults(resultObject) {
   $('#result').append(resultObject.answer);
 
   $('#entryHistory').prepend(`
-  <li> ${num1} ${modeSymbol} ${num2} = ${resultObject.answer} </li>`)
+  <li> ${prevNum} ${modeSymbol} ${currentNum} = ${resultObject.answer} </li>`)
 }

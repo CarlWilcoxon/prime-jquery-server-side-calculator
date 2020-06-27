@@ -12,20 +12,41 @@
   <h1>Server Side Calculator</h1>
 
 <!-- maybe add bootstrap? -->
-  <form id="calculator">
-    <input id="num1-in" />
-      <button class="modeSelect" id="plus-btn">+</button>
-      <button class="modeSelect" id="minus-btn">-</button>
-      <button class="modeSelect" id="multiply-btn">*</button>
-      <button class="modeSelect" id="divide-btn">/</button>
-    <input id="num2-in" />
-      <button id="equals-btn">=</button>
-      <button id="clear-btn">C</button>
-  </form>
-  <div id="result">0</div>
+<form id="calculator">
+  <input id="calcScreen" disabled /> <button id="clear-btn">C</button>
+    <table>
+      <tbody>
+        <tr>
+          <td><button class="numberBtn">7</button></td>
+          <td><button class="numberBtn">8</button></td>
+          <td><button class="numberBtn">9</button></td>
+          <td><button class="modeSelect" id="plus-btn">+</button></td>
+        </tr>
+        <tr>
+          <td><button class="numberBtn">4</button></td>
+          <td><button class="numberBtn">5</button></td>
+          <td><button class="numberBtn">6</button></td>
+          <td><button class="modeSelect" id="minus-btn">-</button></td>
+        </tr>
+        <tr>
+          <td><button class="numberBtn">1</button></td>
+          <td><button class="numberBtn">2</button></td>
+          <td><button class="numberBtn">3</button></td>
+          <td><button class="modeSelect" id="multiply-btn">*</button></td>
+        </tr>
+        <tr>
+          <td><button class="numberBtn">0</button></td>
+          <td><button id="decimalBtn">.</button></td>
+          <td><button id="equals-btn">=</button></td>
+          <td><button class="modeSelect" id="divide-btn">/</button></td>
+        </tr>
+      </tbody>
+    </table>
+</form>
+<div id="result">0</div>
 
-  <ul id="entryHistory">
-  </ul>
+<ul id="entryHistory">
+</ul>
 
 </body>
 </html>
