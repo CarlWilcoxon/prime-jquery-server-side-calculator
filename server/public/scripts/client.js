@@ -26,6 +26,16 @@ function calc(event) {
     num2
   }
 
+  $.ajax({
+    type: 'POST',
+    url: '/calculate',
+    data: parcel
+    //then, when you get a response 
+  }).then(function () {
+    console.log('');
+  }).catch(function (err) {
+    alert('Error, invalid input:', err);
+  })
 }
 
 function clearCalc(event) {

@@ -15,16 +15,14 @@ app.use(express.static('server/public'));
 app.listen(PORT, () => {
   console.log ('Server is running on port', PORT)
 })
-/*
 
-app.post('/new-game', (req, res) => {
-  console.log('Range is',req.body);
-  minNum = req.body['min'];
-  maxNum = req.body['max'];
-  randomNumber = randomInt(minNum, maxNum);
-  res.send('New game started!');
+
+app.post('/calculate', (req, res) => {
+  console.log('input is',req.body);
+  let result = 0;
+  res.send(result);
 });
-
+/*
 app.post('/guess', (req, res) => {
   let tempObject = req.body;
   console.log('guessing', tempObject); //here
