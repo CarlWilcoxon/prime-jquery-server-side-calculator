@@ -1,6 +1,9 @@
 console.log('js');
 
 let mode = '';
+let modeSymbol = '';
+let num1 = 0;
+let num2 = 0;
 
 $(document).ready(onReady);
 
@@ -17,8 +20,8 @@ function onReady() {
 function calc(event) {
   event.preventDefault();
 
-  let num1 = parseFloat($('#num1-in').val());
-  let num2 = parseFloat($('#num2-in').val());
+  num1 = parseFloat($('#num1-in').val());
+  num2 = parseFloat($('#num2-in').val());
   
   let parcel = {
     mode,
@@ -26,13 +29,16 @@ function calc(event) {
     num2
   }
 
+  console.log(parcel);
+
   $.ajax({
     type: 'POST',
     url: '/calculate',
     data: parcel
     //then, when you get a response 
-  }).then(function () {
-    console.log('');
+  }).then(function (response) {
+    console.log('the response is:', response);
+    updateResults(response);
   }).catch(function (err) {
     alert('Error, invalid input:', err);
   })
@@ -51,4 +57,22 @@ function selectMode(event) {
   //cut off the -btn from the id
   mode = this.id.slice(0, -4);
   console.log(mode);
+
+  if (mode == 'plus') {
+    modeSymbol = '+';
+  } else if (mode == 'minus') {
+    modeSymbol = '-';
+  } else if (mode == 'divide') {
+    modeSymbol = '/';
+  } else if (mode == 'multiply') {
+    modeSymbol = '*';
+  }
+}
+
+function updateResults(resultObject) {
+  $('#result').empty();
+  $('#result').append(resultObject.answer);
+
+  $('#entryHistory').prepend(`
+  <li> ${num1} ${modeSymbol} ${num2} = ${resultObject.answer} </li>`)
 }

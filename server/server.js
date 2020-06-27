@@ -19,7 +19,23 @@ app.listen(PORT, () => {
 
 app.post('/calculate', (req, res) => {
   console.log('input is',req.body);
-  let result = 0;
+  let result = {};
+  let mode = req.body.mode;
+  let num1 = parseFloat(req.body.num1);
+  let num2 = parseFloat(req.body.num2);
+  
+  if (mode == 'plus') {
+    result.answer = num1 + num2;
+  } else if (mode == 'minus') {
+    result.answer = num1 - num2;
+  } else if (mode == 'divide') {
+    result.answer = num1 / num2;
+  } else if (mode == 'multiply') {
+    result.answer = num1 * num2;
+  }
+
+  console.log( 'The result is:', result);
+  // res.sendStatus(200);
   res.send(result);
 });
 /*
