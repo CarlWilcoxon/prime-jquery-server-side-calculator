@@ -2,6 +2,8 @@ const express = require('express');
 const bodyParser = require('body-parser');
 const app = express();
 const PORT = 5000;
+const history = {};
+let historyLength = 0;
 
 // This must be added before GET & POST routes.
 app.use(bodyParser.urlencoded({extended:true}))
@@ -16,6 +18,14 @@ app.listen(PORT, () => {
   console.log ('Server is running on port', PORT)
 })
 
+
+app.post('/add-history', (req, res) => {
+  console.log('input is',req.body);
+  history[`entry${historyLength}`] = req.body.newEntry;
+  historyLength++;
+
+  res.sendStatus(200);
+});
 
 app.post('/calculate', (req, res) => {
   console.log('input is',req.body);
@@ -38,3 +48,7 @@ app.post('/calculate', (req, res) => {
   // res.sendStatus(200);
   res.send(result);
 });
+
+app.get('/load-history', (req, res) => {
+  res.send(history);
+})

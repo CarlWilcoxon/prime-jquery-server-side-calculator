@@ -11,6 +11,9 @@ $(document).ready(onReady);
 function onReady() {
   console.log('DOM is ready.');
 
+  //load history
+  loadHistory();
+
   //setup event handlers
   $('#calculator').on('click', '.modeSelect', selectMode);
   $('#calculator').on('click', '#clear-btn', clearCalc);
@@ -50,6 +53,29 @@ function clearCalc(event) {
   mode = '';
   $('#num1-in').val('');
   $('#num2-in').val('');
+
+  $('#result').empty();
+  $('#result').append('0');
+}
+
+function loadHistory() {
+  $.ajax({
+    type: 'GET',
+    url: '/load-history'
+    //then, when you get a response 
+  }).then(function (response) {
+    console.log('the response is:', response);
+    parseHistory(response);
+  }).catch(function (err) {
+    alert('Error, invalid input:', err);
+  })
+}
+
+function parseHistory(historyParcel) {
+  console.log('parsing');
+  for (key in historyParcel) {
+    $('#entryHistory').prepend(historyParcel[key]);
+  }
 }
 
 function selectMode(event) {
@@ -72,7 +98,26 @@ function selectMode(event) {
 function updateResults(resultObject) {
   $('#result').empty();
   $('#result').append(resultObject.answer);
+  mode = '';
+  $('#num1-in').val('');
+  $('#num2-in').val('');
 
   $('#entryHistory').prepend(`
   <li> ${num1} ${modeSymbol} ${num2} = ${resultObject.answer} </li>`)
+
+  let parcel = {
+    'newEntry' : `
+    <li> ${num1} ${modeSymbol} ${num2} = ${resultObject.answer} </li>`
+  }
+
+  $.ajax({
+    type: 'POST',
+    url: '/add-history',
+    data: parcel
+    //then, when you get a response 
+  }).then(function (response) {
+    console.log('the response from adding history is:', response);
+  }).catch(function (err) {
+    alert('Error, invalid input:', err);
+  })
 }
