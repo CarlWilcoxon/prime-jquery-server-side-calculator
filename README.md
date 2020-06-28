@@ -1,8 +1,4 @@
-![REPO SIZE](https://img.shields.io/github/repo-size/CarlWilcoxon/the_marketplace.svg?style=flat-square)
-![TOP_LANGUAGE](https://img.shields.io/github/languages/top/CarlWilcoxon/the_marketplace.svg?style=flat-square)
-![FORKS](https://img.shields.io/github/forks/CarlWilcoxon/the_marketplace.svg?style=social)
-
-# PROJECT NAME
+# jQuery Server Side Calculator
 
 ## Description
 
