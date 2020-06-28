@@ -7,10 +7,6 @@ _One evening_
 The assignment was to create a calculator that would perform various computations on a local node server. The user enters in two numbers, presses enter and the calculator would find the result and display it on the DOM.
 
 
-## Screen Shot
-
-Include one or two screen shots of your project here (optional). Remove if unused.
-
 ### Prerequisites
 
 Link to software that is required to install the app (e.g. node).
