@@ -2,8 +2,8 @@ console.log('js');
 
 let mode = '';
 let modeSymbol = '';
-let prevNum = 0;
-let currentNum = 0;
+let num1 = 0;
+let num2 = 0;
 
 $(document).ready(onReady);
 
@@ -13,25 +13,20 @@ function onReady() {
 
   //setup event handlers
   $('#calculator').on('click', '.modeSelect', selectMode);
-  $('#calculator').on('click', '.numberBtn', numberPress);
-  $('#calculator').on('click', '#decimal-btn', decimalPress);
   $('#calculator').on('click', '#clear-btn', clearCalc);
-  $('#calculator').on('click', '#clear-all-btn', clearAll);
   $('#calculator').on('click', '#equals-btn', calc);
 }
-
-//TODO rewrite passing to server and server logic.
 
 function calc(event) {
   event.preventDefault();
 
-  prevNum = parseFloat($('#prevNum-in').val());
-  currentNum = parseFloat($('#currentNum-in').val());
+  num1 = parseFloat($('#num1-in').val());
+  num2 = parseFloat($('#num2-in').val());
   
   let parcel = {
     mode,
-    prevNum,
-    currentNum
+    num1,
+    num2
   }
 
   console.log(parcel);
@@ -49,40 +44,12 @@ function calc(event) {
   })
 }
 
-function clearAll(event) {
-  event.preventDefault();
-
-  mode = '';
-  $('#calcScreen').val('');
-  $('#entryHistory').empty();
-  $('#result').empty();
-  $('#result').append(0);
-}
-
 function clearCalc(event) {
   event.preventDefault();
 
   mode = '';
-  $('#calcScreen').val('');
-}
-
-function decimalPress(event) {
-  event.preventDefault();
-  let currentDisplay = $('#calcScreen').val();
-
-  if (parseFloat(currentDisplay) == parseInt(currentDisplay) &&
-  currentDisplay.slice(-1) != '.') {
-    $('#calcScreen').val(currentDisplay + '.');
-  }
-
-}
-
-function numberPress(event) {
-  event.preventDefault();
-
-  let numberPressed = $(this).data().number;
-  let currentDisplay = $('#calcScreen').val();
-  $('#calcScreen').val(currentDisplay + numberPressed);
+  $('#num1-in').val('');
+  $('#num2-in').val('');
 }
 
 function selectMode(event) {
@@ -107,5 +74,5 @@ function updateResults(resultObject) {
   $('#result').append(resultObject.answer);
 
   $('#entryHistory').prepend(`
-  <li> ${prevNum} ${modeSymbol} ${currentNum} = ${resultObject.answer} </li>`)
+  <li> ${num1} ${modeSymbol} ${num2} = ${resultObject.answer} </li>`)
 }
