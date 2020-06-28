@@ -11,7 +11,6 @@ app.use(express.static('server/public'));
 
 // GET & POST Routes go here
 
-
 app.listen(PORT, () => {
   console.log ('Server is running on port', PORT)
 })
@@ -38,29 +37,3 @@ app.post('/calculate', (req, res) => {
   // res.sendStatus(200);
   res.send(result);
 });
-/*
-app.post('/guess', (req, res) => {
-  let tempObject = req.body;
-  console.log('guessing', tempObject); //here
-
-  results = {};
-  
-  tempObject.botGuess = botGuess();
-
-  //for loop to compare each guess to the random number
-  for (const property in tempObject) {
-    console.log('list each object', tempObject[property]);
-    let guess = parseInt(tempObject[property]);
-
-    if (guess == randomNumber) {
-      results[property] = 'winner';
-    } else if (guess < randomNumber) {
-      results[property] = 'too low';
-    } else if (guess > randomNumber) {
-      results[property] = 'too high';
-    }
-  };
-
-  res.send(results);
-});
-*/
