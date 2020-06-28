@@ -13,9 +13,14 @@ function onReady() {
 
   //setup event handlers
   $('#calculator').on('click', '.modeSelect', selectMode);
+  $('#calculator').on('click', '.numberBtn', numberPress);
+  $('#calculator').on('click', '#decimal-btn', decimalPress);
   $('#calculator').on('click', '#clear-btn', clearCalc);
+  $('#calculator').on('click', '#clear-all-btn', clearAll);
   $('#calculator').on('click', '#equals-btn', calc);
 }
+
+//TODO rewrite passing to server and server logic.
 
 function calc(event) {
   event.preventDefault();
@@ -44,12 +49,40 @@ function calc(event) {
   })
 }
 
+function clearAll(event) {
+  event.preventDefault();
+
+  mode = '';
+  $('#calcScreen').val('');
+  $('#entryHistory').empty();
+  $('#result').empty();
+  $('#result').append(0);
+}
+
 function clearCalc(event) {
   event.preventDefault();
 
   mode = '';
-  $('#prevNum-in').val('');
-  $('#currentNum-in').val('');
+  $('#calcScreen').val('');
+}
+
+function decimalPress(event) {
+  event.preventDefault();
+  let currentDisplay = $('#calcScreen').val();
+
+  if (parseFloat(currentDisplay) == parseInt(currentDisplay) &&
+  currentDisplay.slice(-1) != '.') {
+    $('#calcScreen').val(currentDisplay + '.');
+  }
+
+}
+
+function numberPress(event) {
+  event.preventDefault();
+
+  let numberPressed = $(this).data().number;
+  let currentDisplay = $('#calcScreen').val();
+  $('#calcScreen').val(currentDisplay + numberPressed);
 }
 
 function selectMode(event) {
